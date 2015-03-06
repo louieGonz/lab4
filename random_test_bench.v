@@ -78,13 +78,49 @@ module random_test_bench;
 		mem_data = 0;
 		rd = 0;
 		addr = 0;
-
+		
 		// Wait 100 ns for global reset to finish
 		#100;
-        
+	        
 		// Add stimulus here
-
+		forever #10 clk = ~clk;
+		
 	end
+	
+	
+	always @(clk%10=0)
+	begin
+		addr = $random;
+		rd=1'b1;
+	end
+
+	initial begin
+		$monitor("clk = %d clk = %h",clk,addr);
+		#400 $finish;
+	end		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       
 endmodule
 
